@@ -140,3 +140,57 @@ button[type="submit"]:hover {
     color: var(--Soft-Red);
     text-indent: 4ch;
 }
+
+/* mobile view */
+
+@media only screen and (max-width:500px) {
+    main {
+        flex-direction: column-reverse;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .right {
+        background: url("./images/hero-mobile.jpg") no-repeat;
+        background-size: 100%;
+        margin-top: 20%;
+        width: 100%;
+    }
+
+    .logo {
+        position: absolute;
+        top: 0;
+        padding: 5%;
+        transform: scale(.7);
+    }
+
+    .centered {
+        min-width: 100%;
+        text-align: center;
+    }
+
+    .main-text {
+        font-size: 2.5rem;
+        letter-spacing: .8rem;
+        padding: 0 10%;
+    }
+
+    .details {
+        font-size: .8rem;
+        text-align: center;
+        padding: 0 10%;
+        line-height: 2;
+        margin: 5% auto;
+    }
+
+    .input-control {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    button[type="submit"] {
+        padding: 4% 8%;
+    }
+}

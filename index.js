@@ -25,20 +25,41 @@ function removeErr() {
   input_control.classList.remove("invalid");
 }
 
-btn.addEventListener("click", (e) => {
+function isEmail(email) {
+  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    email
+  );
+}
+
+async function saveEmail(email) {
+  const response = await fetch("http://localhost:1739/base-apparel", {
+    method: "POST",
+    body: JSON.stringify({ email }),
+    headers: {
+      Accept: "*/*",
+      "Content-Type": "application/json",
+    },
+  });
+
+  let data = await response.json();
+  return data;
+}
+
+btn.addEventListener("click", async (e) => {
   e.preventDefault();
-  if (!input.value.trim()) {
+  if (!input.value.trim() || !isEmail(input.value)) {
     setErr();
     setTimeout(() => {
       removeErr();
     }, 2000);
+  } else {
+    const response = await saveEmail(input.value);
+    alert(response.message);
+    console.log(response.message);
   }
 });
 
 // TODO:
-// --create a regex to validate email;
-// --crete a node API with express to submit email;
-// --use xammp server to save the emails to mysql database;
-
-const str =
-  "distance thing summer nine kids add fly ancient so driver native fully natural above bean language land so look belt tales twice so younger";
+// --create a regex to validate email; //done ✅
+// --crete a json node.js API with express to submit email;  //done ✅
+// --use xammp server to save the emails to mysql database;  //done ✅
